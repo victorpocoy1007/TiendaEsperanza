@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Configuración y respaldo";
+    ViewData["ActivePage"] = "Backup";
+}
+
+<div class="page-header">
+    <h1>⚙️ Configuración y respaldo</h1>
+    <p>Tus datos viven en este dispositivo. Respalda seguido.</p>
+</div>
+
+<div class="card block-group btn-block-group">
+    <button type="button" class="btn btn-primary" id="btnExportarJSON">⬇️ Exportar respaldo JSON</button>
+    <button type="button" class="btn btn-outline" id="btnImportarJSON">⬆️ Importar respaldo JSON</button>
+    <input type="file" id="inputImportarJSON" accept="application/json" style="display:none;" />
+</div>
+
+<div class="card">
+    <p class="card-title">Exportar CSV</p>
+    <div class="field">
+        <label for="csvTipo">Tipo de reporte</label>
+        <select id="csvTipo">
+            <option value="historial">Historial general</option>
+            <option value="cocos">Movimientos de cocos</option>
+            <option value="prestamos">Préstamos</option>
+        </select>
+    </div>
+    <button type="button" class="btn btn-outline" id="btnExportarCSV">⬇️ Exportar CSV</button>
+</div>
+
+<div class="card">
+    <p class="card-title">Zona de peligro</p>
+    <p class="card-sub" style="margin-bottom:12px;">Esta acción elimina toda la información almacenada en este dispositivo. No se puede deshacer.</p>
+    <button type="button" class="btn btn-danger" id="btnBorrarTodo">🗑️ Borrar todos los datos</button>
+</div>
+
+@section Scripts {
+    <script src="~/js/backup.js" asp-append-version="true"></script>
+}

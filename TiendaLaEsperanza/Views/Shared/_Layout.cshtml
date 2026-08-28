@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>@(ViewData["Title"] != null ? ViewData["Title"] + " - Tienda La Esperanza" : "Tienda La Esperanza")</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body data-page="@ViewData["ActivePage"]">
+    <header class="topbar">
+        <button class="icon-btn" id="btnMenu" aria-label="Menú" type="button">
+            <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="topbar-title">
+            <span class="topbar-name">Tienda La Esperanza</span>
+            <span class="topbar-date" id="topbarFecha">--/--/----</span>
+        </div>
+        <div class="topbar-spacer"></div>
+    </header>
+
+    <nav class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <span>Menú</span>
+            <button class="icon-btn" id="btnCerrarMenu" aria-label="Cerrar menú" type="button">&times;</button>
+        </div>
+        <a asp-controller="Home" asp-action="Index">🏠 Inicio</a>
+        <a asp-controller="Tienda" asp-action="Index">🏪 Tienda</a>
+        <a asp-controller="Cocos" asp-action="Index">🥥 Cocos</a>
+        <a asp-controller="Hielos" asp-action="Index">🧊 Hielos</a>
+        <a asp-controller="Prestamo" asp-action="Index">🤝 Préstamos</a>
+        <a asp-controller="Capital" asp-action="Index">💰 Capital / Historial</a>
+        <a asp-controller="Backup" asp-action="Index">⚙️ Configuración / Backups</a>
+    </nav>
+    <div class="side-menu-overlay" id="sideMenuOverlay"></div>
+
+    <main class="app-content">
+        @RenderBody()
+    </main>
+
+    <nav class="bottom-nav">
+        <a asp-controller="Home" asp-action="Index" class="bottom-nav-item" data-page="Home">
+            <span class="bn-icon">🏠</span><span>Inicio</span>
+        </a>
+        <a asp-controller="Tienda" asp-action="Index" class="bottom-nav-item" data-page="Tienda">
+            <span class="bn-icon">🛒</span><span>Ventas</span>
+        </a>
+        <a asp-controller="Capital" asp-action="Index" class="bottom-nav-item bottom-nav-fab" data-page="Capital" aria-label="Cierre y capital">
+            <span class="bn-fab">+</span>
+        </a>
+        <a asp-controller="Cocos" asp-action="Index" class="bottom-nav-item" data-page="Cocos">
+            <span class="bn-icon">🥥</span><span>Cocos</span>
+        </a>
+        <a asp-controller="Backup" asp-action="Index" class="bottom-nav-item" data-page="Backup">
+            <span class="bn-icon">☰</span><span>Más</span>
+        </a>
+    </nav>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box" id="modalBox"></div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="~/js/storage.js" asp-append-version="true"></script>
+    <script src="~/js/ui.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

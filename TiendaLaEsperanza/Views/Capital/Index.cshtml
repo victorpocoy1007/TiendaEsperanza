@@ -1,0 +1,124 @@
+@{
+    ViewData["Title"] = "Capital";
+    ViewData["ActivePage"] = "Capital";
+}
+
+<div class="page-header">
+    <h1>💰 Capital y cierre</h1>
+    <p>Capital general, cierre del día e historial completo</p>
+</div>
+
+<div class="tabs">
+    <button type="button" class="tab-btn active" data-tab="capital">Capital</button>
+    <button type="button" class="tab-btn" data-tab="cierre">Cierre del día</button>
+    <button type="button" class="tab-btn" data-tab="historial">Historial</button>
+</div>
+
+<!-- Capital -->
+<div class="tab-panel active" id="panel-capital">
+    <div class="card">
+        <p class="card-title">Capital actual</p>
+        <p class="card-value" id="capActual">Q 0.00</p>
+        <p class="card-sub">Ventas − salidas procesadas − retiros. Los préstamos entre áreas no alteran este total.</p>
+    </div>
+
+    <div class="section-title">Dinero que me deben / debo por área</div>
+    <div class="card">
+        <div class="list-row">
+            <div class="list-row-main"><span class="list-row-title">Tienda</span></div>
+            <div class="list-row-amount" id="saldoTienda">Q 0.00</div>
+        </div>
+        <div class="list-row">
+            <div class="list-row-main"><span class="list-row-title">Cocos</span></div>
+            <div class="list-row-amount" id="saldoCocos">Q 0.00</div>
+        </div>
+        <div class="list-row">
+            <div class="list-row-main"><span class="list-row-title">Hielos</span></div>
+            <div class="list-row-amount" id="saldoHielos">Q 0.00</div>
+        </div>
+    </div>
+    <p class="field-hint">Valor positivo = a esa área le deben dinero. Valor negativo = esa área tiene deudas pendientes.</p>
+</div>
+
+<!-- Cierre del día -->
+<div class="tab-panel" id="panel-cierre">
+    <div class="section-title">Ventas</div>
+    <div class="card">
+        <div class="list-row"><div class="list-row-main">Tienda</div><div class="list-row-amount positivo" id="cierreVentasTienda">Q 0.00</div></div>
+        <div class="list-row"><div class="list-row-main">Cocos</div><div class="list-row-amount positivo" id="cierreVentasCocos">Q 0.00</div></div>
+        <div class="list-row"><div class="list-row-main">Hielos</div><div class="list-row-amount positivo" id="cierreVentasHielos">Q 0.00</div></div>
+        <div class="list-row"><div class="list-row-main"><strong>Total</strong></div><div class="list-row-amount positivo" id="cierreVentasTotal">Q 0.00</div></div>
+    </div>
+
+    <div class="section-title">Salidas</div>
+    <div class="card">
+        <div class="list-row"><div class="list-row-main">Tienda</div><div class="list-row-amount negativo" id="cierreSalidasTienda">Q 0.00</div></div>
+        <div class="list-row"><div class="list-row-main">Cocos</div><div class="list-row-amount negativo" id="cierreSalidasCocos">Q 0.00</div></div>
+        <div class="list-row"><div class="list-row-main">Hielos</div><div class="list-row-amount negativo" id="cierreSalidasHielos">Q 0.00</div></div>
+        <div class="list-row"><div class="list-row-main"><strong>Total</strong></div><div class="list-row-amount negativo" id="cierreSalidasTotal">Q 0.00</div></div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <p class="card-title">Retiros</p>
+            <p class="card-value negativo" id="cierreRetiros">Q 0.00</p>
+        </div>
+        <div class="card">
+            <p class="card-title">Préstamos</p>
+            <p class="card-sub">Recibidos: <span id="cierrePrestamosRecibidos">Q 0.00</span></p>
+            <p class="card-sub">Prestados: <span id="cierrePrestamosPrestados">Q 0.00</span></p>
+        </div>
+    </div>
+
+    <div class="section-title">Cocos</div>
+    <div class="card">
+        <div class="grid-3">
+            <div><p class="card-sub" style="margin:0;">Comprados</p><p class="card-sub" id="cierreCocosComprados" style="font-weight:800;color:var(--texto-oscuro);">0</p></div>
+            <div><p class="card-sub" style="margin:0;">Vendidos</p><p class="card-sub" id="cierreCocosVendidos" style="font-weight:800;color:var(--texto-oscuro);">0</p></div>
+            <div><p class="card-sub" style="margin:0;">Desechados</p><p class="card-sub" id="cierreCocosDesechados" style="font-weight:800;color:var(--texto-oscuro);">0</p></div>
+        </div>
+        <p class="card-sub" style="margin-top:10px;">Existencia actual: <strong id="cierreCocosExistencia">0</strong></p>
+    </div>
+
+    <div class="card">
+        <p class="card-title">Resultado neto del día</p>
+        <p class="card-value" id="cierreResultado">Q 0.00</p>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="btnCerrarDiaCapital">Cerrar día</button>
+</div>
+
+<!-- Historial -->
+<div class="tab-panel" id="panel-historial">
+    <div class="filter-row">
+        <select id="filtroArea">
+            <option value="">Todas las áreas</option>
+            <option value="Tienda">Tienda</option>
+            <option value="Cocos">Cocos</option>
+            <option value="Hielos">Hielos</option>
+        </select>
+        <select id="filtroTipo">
+            <option value="">Todos los tipos</option>
+            <option value="VENTA">Venta</option>
+            <option value="VENTA_COCOS">Venta de cocos</option>
+            <option value="SALIDA">Salida</option>
+            <option value="RETIRO">Retiro</option>
+            <option value="COMPRA_COCOS">Compra de cocos</option>
+            <option value="PRESTAMO">Préstamo</option>
+            <option value="PAGO_PRESTAMO">Pago de préstamo</option>
+            <option value="CIERRE_DIA">Cierre del día</option>
+        </select>
+    </div>
+    <div class="filter-row">
+        <input type="date" id="filtroFecha" />
+        <button type="button" class="btn btn-secondary" id="btnLimpiarFiltros" style="flex:0 0 auto; width:auto; padding:9px 14px;">Limpiar</button>
+    </div>
+
+    <div class="card" id="historialGeneralLista">
+        <div class="empty-state">Sin movimientos todavía.</div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/capital.js" asp-append-version="true"></script>
+}

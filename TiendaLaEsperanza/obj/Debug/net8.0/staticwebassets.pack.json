@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\area-simple.js",
+      "PackagePath": "staticwebassets\\js\\area-simple.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\backup.js",
+      "PackagePath": "staticwebassets\\js\\backup.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\capital.js",
+      "PackagePath": "staticwebassets\\js\\capital.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\cocos.js",
+      "PackagePath": "staticwebassets\\js\\cocos.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\dashboard.js",
+      "PackagePath": "staticwebassets\\js\\dashboard.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\hielos.js",
+      "PackagePath": "staticwebassets\\js\\hielos.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\prestamos.js",
+      "PackagePath": "staticwebassets\\js\\prestamos.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\storage.js",
+      "PackagePath": "staticwebassets\\js\\storage.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\tienda.js",
+      "PackagePath": "staticwebassets\\js\\tienda.js"
+    },
+    {
+      "Id": "C:\\Users\\raxtu\\TiendaLaEsperanza\\TiendaLaEsperanza\\wwwroot\\js\\ui.js",
+      "PackagePath": "staticwebassets\\js\\ui.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TiendaLaEsperanza.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TiendaLaEsperanza.props",
+      "PackagePath": "build\\TiendaLaEsperanza.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TiendaLaEsperanza.props",
+      "PackagePath": "buildMultiTargeting\\TiendaLaEsperanza.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TiendaLaEsperanza.props",
+      "PackagePath": "buildTransitive\\TiendaLaEsperanza.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,103 @@
+@{
+    ViewData["Title"] = "Inicio";
+    ViewData["ActivePage"] = "Home";
+}
+
+<div class="page-header">
+    <h1>Resumen del negocio</h1>
+    <p>Estado actualizado al momento</p>
+</div>
+
+<div class="card">
+    <p class="card-title">Capital actual</p>
+    <p class="card-value" id="dashCapital">Q 0.00</p>
+</div>
+
+<div class="section-title">Ventas del día</div>
+<div class="card">
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Tienda</span></div>
+        <div class="list-row-amount positivo" id="dashVentasTienda">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Cocos</span></div>
+        <div class="list-row-amount positivo" id="dashVentasCocos">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Hielos</span></div>
+        <div class="list-row-amount positivo" id="dashVentasHielos">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Total</span></div>
+        <div class="list-row-amount positivo" id="dashVentasTotal">Q 0.00</div>
+    </div>
+</div>
+
+<div class="section-title">Salidas del día</div>
+<div class="card">
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Tienda</span></div>
+        <div class="list-row-amount negativo" id="dashSalidasTienda">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Cocos</span></div>
+        <div class="list-row-amount negativo" id="dashSalidasCocos">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Hielos</span></div>
+        <div class="list-row-amount negativo" id="dashSalidasHielos">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Total</span></div>
+        <div class="list-row-amount negativo" id="dashSalidasTotal">Q 0.00</div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <p class="card-title">Retiros</p>
+        <p class="card-value negativo" id="dashRetiros">Q 0.00</p>
+    </div>
+    <div class="card">
+        <p class="card-title">Resultado del día</p>
+        <p class="card-value" id="dashResultado">Q 0.00</p>
+    </div>
+</div>
+
+<div class="section-title">Préstamos</div>
+<div class="card">
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Dinero prestado</span></div>
+        <div class="list-row-amount" id="dashPrestado">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Dinero recibido (pagos)</span></div>
+        <div class="list-row-amount" id="dashRecibido">Q 0.00</div>
+    </div>
+    <div class="list-row">
+        <div class="list-row-main"><span class="list-row-title">Deudas pendientes</span></div>
+        <div class="list-row-amount negativo" id="dashDeudas">Q 0.00</div>
+    </div>
+</div>
+
+<div class="section-title">Áreas</div>
+<div class="grid-2" style="margin-bottom:14px;">
+    <a class="nav-card" asp-controller="Tienda" asp-action="Index"><span class="nc-icon">🏪</span> Tienda</a>
+    <a class="nav-card" asp-controller="Cocos" asp-action="Index"><span class="nc-icon">🥥</span> Cocos</a>
+    <a class="nav-card" asp-controller="Hielos" asp-action="Index"><span class="nc-icon">🧊</span> Hielos</a>
+    <a class="nav-card" asp-controller="Prestamo" asp-action="Index"><span class="nc-icon">🤝</span> Préstamos</a>
+    <a class="nav-card" asp-controller="Capital" asp-action="Index"><span class="nc-icon">💰</span> Capital</a>
+    <a class="nav-card" asp-controller="Capital" asp-action="Index"><span class="nc-icon">📊</span> Resumen</a>
+    <a class="nav-card" asp-controller="Backup" asp-action="Index" style="grid-column: span 2;"><span class="nc-icon">⚙️</span> Configuración / Backups</a>
+</div>
+
+<div class="section-title">Actividad reciente</div>
+<div class="card" id="dashActividad">
+    <div class="empty-state">Sin movimientos todavía.</div>
+</div>
+
+<button type="button" class="btn btn-primary" id="btnCerrarDia" style="margin-top:6px;">Cerrar día</button>
+
+@section Scripts {
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+}

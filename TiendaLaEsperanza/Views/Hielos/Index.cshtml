@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Hielos";
+    ViewData["ActivePage"] = "Cocos";
+}
+
+<div class="page-header">
+    <h1>🧊 Hielos</h1>
+    <p>Venta diaria, salidas y retiros</p>
+</div>
+
+<div class="tabs">
+    <button type="button" class="tab-btn active" data-tab="venta">Venta</button>
+    <button type="button" class="tab-btn" data-tab="salidas">Salidas</button>
+    <button type="button" class="tab-btn" data-tab="retiro">Retiro</button>
+    <button type="button" class="tab-btn" data-tab="resumen">Resumen</button>
+    <button type="button" class="tab-btn" data-tab="historial">Historial</button>
+</div>
+
+<!-- Venta del día -->
+<div class="tab-panel active" id="panel-venta">
+    <div class="card">
+        <p class="card-title">Venta del día</p>
+        <p class="card-value" id="hielosVentaHoy">Sin registrar</p>
+        <p class="card-sub" id="hielosVentaHoraInfo"></p>
+    </div>
+    <div class="card" id="formVentaCard">
+        <div class="field">
+            <label for="hielosMontoVenta">Monto de venta</label>
+            <input type="number" id="hielosMontoVenta" min="0.01" step="0.01" placeholder="0.00" />
+        </div>
+        <button type="button" class="btn btn-primary" id="btnRegistrarVentaHielos">Registrar venta diaria</button>
+    </div>
+</div>
+
+<!-- Salidas -->
+<div class="tab-panel" id="panel-salidas">
+    <div class="card">
+        <div class="field">
+            <label for="hielosMontoSalida">Monto</label>
+            <input type="number" id="hielosMontoSalida" min="0.01" step="0.01" placeholder="0.00" />
+        </div>
+        <div class="field">
+            <label for="hielosDescSalida">Descripción (opcional)</label>
+            <input type="text" id="hielosDescSalida" placeholder="Ej. Materia prima" />
+        </div>
+        <button type="button" class="btn btn-outline" id="btnAgregarSalidaHielos">Agregar salida</button>
+    </div>
+
+    <div class="card">
+        <p class="card-title">Total de salidas pendientes</p>
+        <p class="card-value negativo" id="hielosTotalSalidasPendientes">Q 0.00</p>
+    </div>
+
+    <div class="card" id="hielosListaSalidasPendientes">
+        <div class="empty-state">No hay salidas pendientes.</div>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="btnProcesarSalidasHielos">Registrar salidas del día</button>
+</div>
+
+<!-- Retiro -->
+<div class="tab-panel" id="panel-retiro">
+    <div class="card">
+        <div class="field">
+            <label for="hielosMontoRetiro">Monto</label>
+            <input type="number" id="hielosMontoRetiro" min="0.01" step="0.01" placeholder="0.00" />
+        </div>
+        <div class="field">
+            <label for="hielosDescRetiro">Descripción (opcional)</label>
+            <input type="text" id="hielosDescRetiro" placeholder="Ej. Compra externa" />
+        </div>
+        <button type="button" class="btn btn-danger" id="btnRetiroHielos">Registrar retiro</button>
+    </div>
+</div>
+
+<!-- Resumen -->
+<div class="tab-panel" id="panel-resumen">
+    <div class="grid-2">
+        <div class="card">
+            <p class="card-title">Ventas de hoy</p>
+            <p class="card-value" id="hielosResVentas">Q 0.00</p>
+        </div>
+        <div class="card">
+            <p class="card-title">Salidas de hoy</p>
+            <p class="card-value negativo" id="hielosResSalidas">Q 0.00</p>
+        </div>
+        <div class="card">
+            <p class="card-title">Retiros de hoy</p>
+            <p class="card-value negativo" id="hielosResRetiros">Q 0.00</p>
+        </div>
+        <div class="card">
+            <p class="card-title">Saldo de préstamos</p>
+            <p class="card-value" id="hielosResPrestamos">Q 0.00</p>
+        </div>
+    </div>
+</div>
+
+<!-- Historial -->
+<div class="tab-panel" id="panel-historial">
+    <div class="card" id="hielosHistorial">
+        <div class="empty-state">Sin movimientos todavía.</div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/area-simple.js" asp-append-version="true"></script>
+    <script src="~/js/hielos.js" asp-append-version="true"></script>
+}

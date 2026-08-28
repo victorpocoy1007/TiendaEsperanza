@@ -1,0 +1,186 @@
+@{
+    ViewData["Title"] = "Cocos";
+    ViewData["ActivePage"] = "Cocos";
+}
+
+<div class="page-header">
+    <h1>🥥 Cocos</h1>
+    <p>Inventario, ventas, compras y desperdicio</p>
+</div>
+
+<div class="card">
+    <p class="card-title">Cocos disponibles</p>
+    <p class="card-value" id="cocosExistencia">0</p>
+    <div class="grid-3" style="margin-top:10px;">
+        <div>
+            <p class="card-sub" style="margin:0;">Comprados</p>
+            <p class="card-sub" id="cocosComprados" style="font-weight:800; color:var(--texto-oscuro);">0</p>
+        </div>
+        <div>
+            <p class="card-sub" style="margin:0;">Vendidos</p>
+            <p class="card-sub" id="cocosVendidos" style="font-weight:800; color:var(--texto-oscuro);">0</p>
+        </div>
+        <div>
+            <p class="card-sub" style="margin:0;">Desechados</p>
+            <p class="card-sub" id="cocosDesechados" style="font-weight:800; color:var(--texto-oscuro);">0</p>
+        </div>
+    </div>
+</div>
+
+<div class="grid-2" style="margin-bottom:16px;">
+    <div class="card" style="padding:12px;">
+        <p class="card-title">Ventas del día</p>
+        <p class="card-value" id="cocosVentasHoy" style="font-size:1.3rem;">Q 0.00</p>
+    </div>
+    <div class="card" style="padding:12px;">
+        <p class="card-title">Salidas pendientes</p>
+        <p class="card-value negativo" id="cocosSalidasPendientesResumen" style="font-size:1.3rem;">Q 0.00</p>
+    </div>
+</div>
+
+<div class="tabs">
+    <button type="button" class="tab-btn active" data-tab="venta">Vender</button>
+    <button type="button" class="tab-btn" data-tab="compra">Comprar</button>
+    <button type="button" class="tab-btn" data-tab="desperdicio">Desperdicio</button>
+    <button type="button" class="tab-btn" data-tab="salidas">Salidas</button>
+    <button type="button" class="tab-btn" data-tab="retiro">Retiro</button>
+    <button type="button" class="tab-btn" data-tab="historial">Historial</button>
+</div>
+
+<!-- Vender -->
+<div class="tab-panel active" id="panel-venta">
+    <div class="card">
+        <div class="checkbox-row">
+            <input type="checkbox" id="chkPelado" />
+            <label for="chkPelado" style="margin:0;">Coco pelado</label>
+        </div>
+        <div class="grid-2" id="camposPelado" style="display:none; margin-bottom:14px;">
+            <div class="field"><label>Precio</label><input type="number" id="precioPelado" min="0" step="0.01" placeholder="0.00" /></div>
+            <div class="field"><label>Cantidad</label><input type="number" id="cantidadPelado" min="1" step="1" placeholder="0" /></div>
+        </div>
+
+        <div class="checkbox-row">
+            <input type="checkbox" id="chkEntero" />
+            <label for="chkEntero" style="margin:0;">Coco entero</label>
+        </div>
+        <div class="grid-2" id="camposEntero" style="display:none; margin-bottom:14px;">
+            <div class="field"><label>Precio</label><input type="number" id="precioEntero" min="0" step="0.01" placeholder="0.00" /></div>
+            <div class="field"><label>Cantidad</label><input type="number" id="cantidadEntero" min="1" step="1" placeholder="0" /></div>
+        </div>
+
+        <div class="checkbox-row">
+            <input type="checkbox" id="chkVaso" />
+            <label for="chkVaso" style="margin:0;">Coco en vaso</label>
+        </div>
+        <div class="grid-2" id="camposVaso" style="display:none; margin-bottom:6px;">
+            <div class="field"><label>Precio</label><input type="number" id="precioVaso" min="0" step="0.01" placeholder="0.00" /></div>
+            <div class="field"><label>Cantidad</label><input type="number" id="cantidadVaso" min="1" step="1" placeholder="0" /></div>
+        </div>
+
+        <div class="list-row" style="border-top:1px solid var(--gris-borde); margin-top:6px;">
+            <div class="list-row-main"><span class="list-row-title">Total</span></div>
+            <div class="list-row-amount positivo" id="ventaCocosTotal">Q 0.00</div>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="btnRegistrarVentaCocos" style="margin-top:10px;">Registrar venta</button>
+    </div>
+
+    <div class="card">
+        <p class="card-title">Vendidos hoy por tipo</p>
+        <div class="grid-3">
+            <div><p class="card-sub" style="margin:0;">Pelados</p><p class="card-sub" id="hoyPelados" style="font-weight:800; color:var(--texto-oscuro);">0</p></div>
+            <div><p class="card-sub" style="margin:0;">Enteros</p><p class="card-sub" id="hoyEnteros" style="font-weight:800; color:var(--texto-oscuro);">0</p></div>
+            <div><p class="card-sub" style="margin:0;">Vaso</p><p class="card-sub" id="hoyVaso" style="font-weight:800; color:var(--texto-oscuro);">0</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- Comprar -->
+<div class="tab-panel" id="panel-compra">
+    <div class="card">
+        <div class="field">
+            <label for="compraCantidad">Cantidad de cocos comprados</label>
+            <input type="number" id="compraCantidad" min="1" step="1" placeholder="0" />
+        </div>
+        <div class="field">
+            <label for="compraCosto">Precio total de la compra</label>
+            <input type="number" id="compraCosto" min="0" step="0.01" placeholder="0.00" />
+        </div>
+        <div class="field">
+            <label for="compraDescripcion">Descripción (opcional)</label>
+            <input type="text" id="compraDescripcion" placeholder="Ej. Compra de un ciento de cocos" />
+        </div>
+        <button type="button" class="btn btn-success" id="btnComprarCocos">Registrar compra</button>
+    </div>
+    <div class="card">
+        <p class="card-title">Gasto total en compras</p>
+        <p class="card-value" id="cocosGastoTotal">Q 0.00</p>
+    </div>
+</div>
+
+<!-- Desperdicio -->
+<div class="tab-panel" id="panel-desperdicio">
+    <div class="card">
+        <div class="field">
+            <label for="desechoCantidad">Cantidad de cocos desechados</label>
+            <input type="number" id="desechoCantidad" min="1" step="1" placeholder="0" />
+        </div>
+        <div class="field">
+            <label for="desechoMotivo">Motivo / descripción</label>
+            <input type="text" id="desechoMotivo" placeholder="Ej. Cocos dañados" />
+        </div>
+        <button type="button" class="btn btn-danger" id="btnRegistrarDesecho">Registrar desperdicio</button>
+    </div>
+</div>
+
+<!-- Salidas -->
+<div class="tab-panel" id="panel-salidas">
+    <div class="card">
+        <div class="field">
+            <label for="cocosMontoSalida">Monto</label>
+            <input type="number" id="cocosMontoSalida" min="0.01" step="0.01" placeholder="0.00" />
+        </div>
+        <div class="field">
+            <label for="cocosDescSalida">Descripción (opcional)</label>
+            <input type="text" id="cocosDescSalida" placeholder="Ej. Materia prima" />
+        </div>
+        <button type="button" class="btn btn-outline" id="btnAgregarSalidaCocos">Agregar salida</button>
+    </div>
+
+    <div class="card">
+        <p class="card-title">Total de salidas pendientes</p>
+        <p class="card-value negativo" id="cocosTotalSalidasPendientes">Q 0.00</p>
+    </div>
+
+    <div class="card" id="cocosListaSalidasPendientes">
+        <div class="empty-state">No hay salidas pendientes.</div>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="btnProcesarSalidasCocos">Registrar salidas del día</button>
+</div>
+
+<!-- Retiro -->
+<div class="tab-panel" id="panel-retiro">
+    <div class="card">
+        <div class="field">
+            <label for="cocosMontoRetiro">Monto</label>
+            <input type="number" id="cocosMontoRetiro" min="0.01" step="0.01" placeholder="0.00" />
+        </div>
+        <div class="field">
+            <label for="cocosDescRetiro">Descripción (opcional)</label>
+            <input type="text" id="cocosDescRetiro" placeholder="Ej. Compra externa" />
+        </div>
+        <button type="button" class="btn btn-danger" id="btnRetiroCocos">Registrar retiro</button>
+    </div>
+</div>
+
+<!-- Historial -->
+<div class="tab-panel" id="panel-historial">
+    <div class="card" id="cocosHistorial">
+        <div class="empty-state">Sin movimientos todavía.</div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/cocos.js" asp-append-version="true"></script>
+}
